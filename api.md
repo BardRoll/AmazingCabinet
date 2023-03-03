@@ -7,19 +7,10 @@ Returns
 ```js
     {
         "status": "success",
-        "num_cabinets" : 2
-    }
-```
-
-## GET /cabinet/{n}
-Frontend gets status of 1 cabinet (n)
-Expects
-    n: cabinet number, starts at 0
-Returns
-```js
-    {
-        "status" : "success",
-        "cabinet_status" : "full"
+        "cabinets" : [
+            "full"
+            "empty"
+        ]
     }
 ```
 cabinetStatus: full, half, low, empty
@@ -61,9 +52,10 @@ Expects
 ```
 count is number of items left
 
-## POST /order/update
+## POST /order/update/{n}
 ESP32 updates orders when items go through chute
 Expects
+    n: order number, starts at 0
 ```js
     {
         "count" : 1
