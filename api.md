@@ -52,7 +52,7 @@ Expects
 count is number of items left
 
 ## POST /order/update/{n}
-ESP32 updates orders when items go through chute
+ESP32 updates orders when items go through slope
 Expects
     n: order number, starts at 0
 ```js
