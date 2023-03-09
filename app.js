@@ -4,6 +4,7 @@ const cabinetRoutes = require("./routes/cabinetRoutes");
 const order_getRoutes = require("./routes/order_getRoutes");
 
 const app = express();
+app.use(express.json({ limit: "10MB" }));
 
 // app.use('/order',orderRoutes);
 // app.use('/order_get',order_getRoutes);
