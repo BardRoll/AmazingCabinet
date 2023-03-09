@@ -22,11 +22,11 @@ router.post('/:n',(req,res,next)=>{
             "message": "No cabinet_status provided"
         });
     }
-    if(isNaN(req.params.n) || req.params.n < 0 || req.params.n > cabinet_len){
+    if(isNaN(req.params.n) || req.params.n < 0 || req.params.n >= cabinet_len){
 
         return res.status(400).send({
             "status":"error",
-            "message": "Cabinet number out of bounds"
+            "message": "Cabinet number must be 0 to "+cabinet_len-1
         })
     }
     resources.cabinets[req.params.n] = cabinet_status;
