@@ -21,7 +21,6 @@ Expects
     n: cabinet number, starts at 0
 ```js
     {
-        "status" : "success",
         "cabinet_status" : "full"
     }
 ```
