@@ -1,50 +1,57 @@
 const resources = require('../resources');
-const express = require('express');
+// const express = require('express');
 
-const router = express.Router();
+// const router = express.Router();
 
-router.post('/submit',(req,res,next)=>{
+function order_submit(req){
     const cabinet_len = resources.cabinets.length
-    const order = req.body.order
+    const order = req.order
     if(!order){
-        return res.status(400).json({
+        return {
             "status" : "error",
             "message": "No order provided"
-        })
+        }
     }
     if(!typeof order === 'object' || Array.isArray(order)){
-        return res.status(400).json({
+        return {
             "status" : "error",
             "message": "Order is not an object"
-        })
+        }
     }
     for(const i in order){
         if(isNaN(i)){
-            return res.status(400).json({
+            return {
                 "status" : "error",
                 "message": "Cabinet '"+i+"' in order is not a valid cabinet"
-            })
+            }
         }
     }
     // resources.orders.push(order)
     const key= resources.add_order(order)
-    res.status(200).json({
+    return {
         "status": "success",
         "order": key
-    })
-})
-
-router.post('/update/:n',(req,res,next)=>{
-    // TODO
-    if(req.params.n in resources.orders){
-        return res.status(400).json({
-            "status" : "error",
-            "message": "Order does not exist"
-        })
     }
-    res.status(200).json({
-        "status": "success",
-    })
-})
+}
 
-module.exports = router;
+function order_get(){
+    const id = resources.get_latest_order_id;
+    const order = resources.orders[id] || {}
+    return {
+        "order_id" : id,
+        "order" : order
+    }
+}
+
+function order_send(req){
+    const id = resources.get_latest_order_id;
+    const cabinet = req.cabinet;
+    console.log(`Order updated cabinet ${cabinet} with count ${count}`)
+    resources.order[id][cabinet] = req.count;
+}
+
+function order_update(req){
+
+}
+
+module.exports = { order_submit, order_get, order_send, order_update};

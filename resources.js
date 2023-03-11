@@ -16,10 +16,15 @@ function genHexString(len) {
 }
 
 function add_order(order){
-
     const key=genHexString(7)
     orders[key] = order
     return key
 }
 
-module.exports = {cabinets,orders}
+function get_latest_order_id(){
+    // TODO get latest unfilled order
+    const id = 0
+    return id
+}
+
+module.exports = {cabinets,orders,get_latest_order_id}
