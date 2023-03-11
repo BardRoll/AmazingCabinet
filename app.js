@@ -8,12 +8,16 @@ const order_getRoutes = require("./routes/order_getRoutes");
 const app = express();
 app.use(express.json({ limit: "10MB" }));
 
-app.use('/order',orderRoutes);
+// app.use('/order',orderRoutes);
 // app.use('/order_get',order_getRoutes);
-app.use('/cabinet',cabinetRoutes);
+// app.use('/cabinet',cabinetRoutes);
+
+app.get('/cabinet',(req,res)=>{
+    return res.send(cabinetRoutes.get_cabinet());
+})
 
 // MQTT
-const mqtt_routes = ['/cabinet/']
+const mqtt_routes = ['/cabinet','/test/number1']
 const client = mqtt.connect('mqtt://broker.emqx.io:1883')
 
 client.on('connect',function(){
@@ -25,10 +29,19 @@ client.on('connect',function(){
 })
 
 client.on('message', function (topic, message) {
-    // message is Buffer
-    console.log(topic.toString())
-    console.log(message.toString())
-    // client.end()
+    const route = topic.toString();
+    const req = JSON.parse(message.toString());
+    console.log(route,req)
+    // console.log(req)
+    switch(route){
+        case '/cabinet':
+            cabinetRoutes.post_cabinet(req)
+            break;
+        case '/order/send':
+
+            break;
+    }
+
 })
 
 const port = process.env.PORT || 5000

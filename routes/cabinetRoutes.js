@@ -1,38 +1,26 @@
 const resources = require('../resources');
-const express = require('express');
-
-const router = express.Router();
 
 
-// get cabinet
-router.get('/',(req,res,next)=>{
-    res.status(200).json({
-        "status": "success",
-        "cabinets" : resources.cabinets
-    })
-})
+function get_cabinet(){
+    return {
+        "status" : "success",
+        "cabinets": resources.cabinets
+    }
+}
 
-router.post('/:n',(req,res,next)=>{
+function post_cabinet(req){
     const cabinet_len = resources.cabinets.length
-    // console.log(req.body)]]
-    cabinet_status = req.body.cabinet_status
+    cabinet_status = req.cabinet_status
     if(!cabinet_status){
-        return res.status(400).send({
-            "status": "error",
-            "message": "No cabinet_status provided"
-        });
+        console.log("No Cabinet Status");
+        return
     }
-    if(isNaN(req.params.n) || req.params.n < 0 || req.params.n >= cabinet_len){
-
-        return res.status(400).send({
-            "status":"error",
-            "message": "Cabinet number must be 0 to "+cabinet_len-1
-        })
+    if(isNaN(req.cabinet) || req.cabinet < 0 || req.cabinet >= cabinet_len){
+        console.log("Cabinet not found")
+        return
     }
-    resources.cabinets[req.params.n] = cabinet_status;
-    return res.send({
-        "status": "success"
-    });
-})
+    console.log(`Cabinet ${req.cabinet} updated to ${cabinet_status}`)
+    resources.cabinets[req.cabinet] = cabinet_status;
+}
 
-module.exports = router;
+module.exports = {get_cabinet,post_cabinet};
