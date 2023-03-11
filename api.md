@@ -2,7 +2,7 @@ Frontend
 ========
 
 ## GET /cabinet
-Frontend get cabinet list
+> Frontend get cabinet list
 Returns
 ```js
     {
@@ -13,10 +13,10 @@ Returns
         ]
     }
 ```
-cabinetStatus: full, half, low, empty
+- cabinetStatus: full, half, low, empty
 
 ## POST /order/submit
-Frontend Sends server medicine order
+> Frontend Sends server medicine order
 Expects
 ```js
     {
@@ -34,14 +34,14 @@ Returns
         "order_id" : "id"
     }
 ```
-order is medicine order, cabinet number : count
-id is the order id
+- order is medicine order, cabinet number : count
+- id is the order id
 
 For MQTT
 ========
 
 ## /cabinet
-ESP sends status of cabinet every few seconds
+> ESP sends status of cabinet every few seconds
 Expects
 ```js
     {
@@ -49,11 +49,11 @@ Expects
         "cabinet_status" : "full"
     }
 ```
-cabinet number, starts at 0
-cabinetStatus: full, half, low, empty
+- cabinet number, starts at 0
+- cabinetStatus: full, half, low, empty
 
 ## /order/get
-Server sends latest order status every few seconds
+> Server sends latest order status every few seconds
 Returns
 ```js
     {
@@ -65,12 +65,12 @@ Returns
         }
     }
 ```
-order is medicine order, cabinet number : count
-count is number of items need to send
+- order is medicine order, cabinet number : count
+- count is number of items need to send
 
 
 ## POST /order/send
-ESP sends update to order
+> ESP sends update to order
 Expects
 ```js
     {
@@ -78,11 +78,11 @@ Expects
         "count" : 1
     }
 ```
-cabinet number, starts at 0
-count is number of items left
+- cabinet number, starts at 0
+- count is number of items left
 
 ## /order/update
-ESP32 updates orders when items go through slope
+> ESP32 updates orders when items go through slope
 Expects
 ```js
     {
@@ -90,7 +90,7 @@ Expects
         "count" : 1
     }
 ```
-count is number of new items through chute from last POST
+- count is number of new items through chute from last POST
 
 Optional
 ========
