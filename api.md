@@ -1,4 +1,4 @@
-Required
+Frontend
 ========
 
 ## GET /cabinet
@@ -14,56 +14,6 @@ Returns
     }
 ```
 cabinetStatus: full, half, low, empty
-
-## POST /cabinet/
-ESP sends status of cabinet
-Expects
-```js
-    {
-        "cabinet" : 1
-        "cabinet_status" : "full"
-    }
-```
-cabinet number, starts at 0
-cabinetStatus: full, half, low, empty
-
-## GET /order_get
-ESP polls new order 
-Expects
-```js
-    {
-        "cabinet": 1
-        "status" : "success",
-        "count" : 2
-    }
-```
-cabinet number, starts at 0
-count is number of items need to send
-
-
-## POST /order_get
-ESP sends update to order
-Expects
-```js
-    {
-        "cabinet" : 1,
-        "status" : "success",
-        "count" : 1
-    }
-```
-cabinet number, starts at 0
-count is number of items left
-
-## POST /order/update/
-ESP32 updates orders when items go through slope
-Expects
-```js
-    {
-        "order": 1,
-        "count" : 1
-    }
-```
-count is number of new items through chute from last POST
 
 ## POST /order/submit
 Frontend Sends server medicine order
@@ -87,7 +37,58 @@ Returns
 order is medicine order, cabinet number : count
 id is the order id
 
-## 
+For MQTT
+========
+
+## /cabinet
+ESP sends status of cabinet
+Expects
+```js
+    {
+        "cabinet" : 1
+        "cabinet_status" : "full"
+    }
+```
+cabinet number, starts at 0
+cabinetStatus: full, half, low, empty
+
+## /order/get
+ESP polls new order 
+Expects
+```js
+    {
+        "cabinet": 1
+        "status" : "success",
+        "count" : 2
+    }
+```
+cabinet number, starts at 0
+count is number of items need to send
+
+
+## POST /order/send
+ESP sends update to order
+Expects
+```js
+    {
+        "cabinet" : 1,
+        "status" : "success",
+        "count" : 1
+    }
+```
+cabinet number, starts at 0
+count is number of items left
+
+## /order/update
+ESP32 updates orders when items go through slope
+Expects
+```js
+    {
+        "order": 1,
+        "count" : 1
+    }
+```
+count is number of new items through chute from last POST
 
 Optional
 ========
