@@ -15,48 +15,51 @@ Returns
 ```
 cabinetStatus: full, half, low, empty
 
-## POST /cabinet/{n}
+## POST /cabinet/
 ESP sends status of cabinet
 Expects
-    n: cabinet number, starts at 0
 ```js
     {
+        "cabinet" : 1
         "cabinet_status" : "full"
     }
 ```
+cabinet number, starts at 0
 cabinetStatus: full, half, low, empty
 
-## GET /order_get/{n}
+## GET /order_get
 ESP polls new order 
 Expects
-    n: cabinet number, starts at 0
 ```js
     {
+        "cabinet": 1
         "status" : "success",
         "count" : 2
     }
 ```
+cabinet number, starts at 0
 count is number of items need to send
 
 
-## POST /order_get/{n}
+## POST /order_get
 ESP sends update to order
 Expects
-    n: cabinet number, starts at 0
 ```js
     {
+        "cabinet" : 1,
         "status" : "success",
         "count" : 1
     }
 ```
+cabinet number, starts at 0
 count is number of items left
 
-## POST /order/update/{n}
+## POST /order/update/
 ESP32 updates orders when items go through slope
 Expects
-    n: order number, starts at 0
 ```js
     {
+        "order": 1,
         "count" : 1
     }
 ```
