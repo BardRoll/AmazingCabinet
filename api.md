@@ -31,7 +31,7 @@ Returns
 ```js
     {
         "status" : "success"
-        "order" : "id"
+        "order_id" : "id"
     }
 ```
 order is medicine order, cabinet number : count
@@ -41,7 +41,7 @@ For MQTT
 ========
 
 ## /cabinet
-ESP sends status of cabinet
+ESP sends status of cabinet every few seconds
 Expects
 ```js
     {
@@ -53,16 +53,19 @@ cabinet number, starts at 0
 cabinetStatus: full, half, low, empty
 
 ## /order/get
-ESP polls new order 
-Expects
+Server sends latest order status every few seconds
+Returns
 ```js
     {
-        "cabinet": 1
-        "status" : "success",
-        "count" : 2
+        "order_id" : "id",
+        "order" : {
+            "1" : 2,
+            "2" : 3,
+            "3" : 4
+        }
     }
 ```
-cabinet number, starts at 0
+order is medicine order, cabinet number : count
 count is number of items need to send
 
 
@@ -72,7 +75,6 @@ Expects
 ```js
     {
         "cabinet" : 1,
-        "status" : "success",
         "count" : 1
     }
 ```
