@@ -13,11 +13,11 @@ app.use('/order',orderRoutes);
 app.use('/cabinet',cabinetRoutes);
 
 // MQTT
-// const client = mqtt.connect('mqtt://broker.emqx.io',[{port:1883}])
+const mqtt_routes = ['/cabinet/']
 const client = mqtt.connect('mqtt://broker.emqx.io:1883')
 
 client.on('connect',function(){
-    client.subscribe(['/test/number1'], function (err) {
+    client.subscribe(mqtt_routes, function (err) {
         if (err) {
             console.log(err);
         }
