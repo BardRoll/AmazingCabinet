@@ -35,4 +35,13 @@ function finish_order(){
     order_queue.pop()
 }
 
-module.exports = {cabinets,orders,get_latest_order_id,finish_order}
+function get_current_orders(){
+    const list = {};
+    for(let i=0;i<order_queue.length;i++){
+        order_id = order_queue[i]
+        list[order_id] = orders[order_id]
+    }
+    return list
+}
+
+module.exports = {cabinets,orders,get_latest_order_id,finish_order,get_current_orders,add_order}

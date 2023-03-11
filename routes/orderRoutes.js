@@ -1,4 +1,12 @@
 const resources = require('../resources');
+
+function order(){
+    const res = {}
+    res.status = "success"
+    res.order = resources.get_current_orders()
+    return res
+}
+
 function order_submit(req){
     const cabinet_len = resources.cabinets.length
     const order = req.order
@@ -68,4 +76,4 @@ function order_update(req){
 
 }
 
-module.exports = { order_submit, order_get, order_send, order_update};
+module.exports = { order,order_submit, order_get, order_send, order_update};

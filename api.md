@@ -16,6 +16,28 @@ Returns
 ```
 - cabinetStatus: full, half, low, empty
 
+## GET /order
+> Frontend get order list
+
+Returns
+```js
+    {
+        "status" : "success",
+        "order" : {
+            "order_id" : {
+                "1" : 2,
+                "2" : 3,
+                "3" : 4
+            },
+            "order_id" : {
+                "1" : 2,
+                "2" : 3,
+                "3" : 4
+            },
+        }
+    }
+```
+
 ## POST /order/submit
 > Frontend Sends server medicine order
 

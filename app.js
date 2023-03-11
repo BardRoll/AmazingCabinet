@@ -11,7 +11,11 @@ app.get('/cabinet',(req,res)=>{
     return res.send(cabinetRoutes.get_cabinet());
 })
 
-app.get('/order/submit',(req,res)=>{
+app.get('/order',(req,res)=>{
+    return res.send(orderRoutes.order());
+})
+
+app.post('/order/submit',(req,res)=>{
     return res.send(
         orderRoutes.order_submit({
             "order" : req.body.order
