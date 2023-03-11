@@ -6,6 +6,7 @@ const cabinets = [
 
 const orders = {}
 const order_queue = []
+let count = 1
 
 function genHexString(len) {
     const hex = '0123456789ABCDEF';
@@ -17,7 +18,8 @@ function genHexString(len) {
 }
 
 function add_order(order){
-    const key=genHexString(7)
+    const key = count;
+    count++;
     orders[key] = order
     order_queue.unshift(key)
     return key
