@@ -5,6 +5,7 @@ const cabinets = [
 ]
 
 const orders = {}
+const order_queue = []
 
 function genHexString(len) {
     const hex = '0123456789ABCDEF';
@@ -18,13 +19,20 @@ function genHexString(len) {
 function add_order(order){
     const key=genHexString(7)
     orders[key] = order
+    order_queue.unshift(key)
     return key
 }
 
 function get_latest_order_id(){
-    // TODO get latest unfilled order
-    const id = 0
+    if(order_queue.length == 0){
+        return
+    }
+    const id = order_queue[order_queue.length-1]
     return id
 }
 
-module.exports = {cabinets,orders,get_latest_order_id}
+function finish_order(){
+    order_queue.pop()
+}
+
+module.exports = {cabinets,orders,get_latest_order_id,finish_order}
