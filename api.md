@@ -3,6 +3,7 @@ Frontend
 
 ## GET /cabinet
 > Frontend get cabinet list
+
 Returns
 ```js
     {
@@ -17,6 +18,7 @@ Returns
 
 ## POST /order/submit
 > Frontend Sends server medicine order
+
 Expects
 ```js
     {
@@ -42,6 +44,7 @@ For MQTT
 
 ## /cabinet
 > ESP sends status of cabinet every few seconds
+
 Expects
 ```js
     {
@@ -54,6 +57,7 @@ Expects
 
 ## /order/get
 > Server sends latest order status every few seconds
+
 Returns
 ```js
     {
@@ -70,6 +74,7 @@ Returns
 
 ## POST /order/send
 > ESP sends update to order
+
 Expects
 ```js
     {
@@ -82,6 +87,7 @@ Expects
 
 ## /order/update
 > ESP32 updates orders when items go through slope
+
 Expects
 ```js
     {
