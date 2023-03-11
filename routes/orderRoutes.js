@@ -31,16 +31,18 @@ function order_submit(req){
 }
 
 function order_get(){
-    const id = resources.get_latest_order_id;
+    const id = resources.get_latest_order_id();
     if(!id){
         console.log("No latest order")
         return
     }
     const order = resources.orders[id] || {}
-    return {
-        "order_id" : id,
-        "order" : order
+    const res = {};
+    res["order_id"] = id
+    for(const i in order){
+        res["order_"+i] = order[i];
     }
+    return res
 }
 
 function order_send(req){

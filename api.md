@@ -58,11 +58,10 @@ Returns
 ```js
     {
         "order_id" : "id",
-        "order" : {
-            "1" : 2,
-            "2" : 3,
-            "3" : 4
-        }
+        "order_1" : 1
+        "order_2" : 3
+        ...
+        "order_n" : 5
     }
 ```
 - order is medicine order, cabinet number : count
